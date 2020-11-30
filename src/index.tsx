@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalStore, GlobalStoreContext } from './service/store';
+import { ToastContainer } from 'react-toastify';
+import './asset/stylesheet/index.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStoreContext.Provider value={new GlobalStore()}>
+      <App />
+    </GlobalStoreContext.Provider>
+    <ToastContainer />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals(console.log);

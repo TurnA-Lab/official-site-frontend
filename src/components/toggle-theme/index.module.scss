@@ -1,0 +1,27 @@
+.Select {
+  min-width: unset !important;
+  width: min-content !important;
+  padding: 0 15px !important;
+
+  > span {
+    margin: 0 !important;
+  }
+}
+
+.Option {
+  justify-content: center !important;
+
+  > span {
+    line-height: 1em !important;
+  }
+}
+
+.OptionChildren {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1em;
+
+  > span {
+    margin-left: 4px;
+  }
+}

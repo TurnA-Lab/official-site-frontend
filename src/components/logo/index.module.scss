@@ -1,0 +1,9 @@
+$size: 24px;
+.Logo {
+  width: $size;
+  height: $size;
+  color: var(--logo-color);
+
+  display: flex;
+  align-items: center;
+}

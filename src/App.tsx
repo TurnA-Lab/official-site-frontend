@@ -1,26 +1,27 @@
+import { CssBaseline, GeistProvider } from '@geist-ui/react';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Homepage } from './page/homepage';
+import { GlobalStoreContext } from './service/store';
 
-function App() {
+const App = observer(() => {
+  const useGlobalStore = React.useContext(GlobalStoreContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GeistProvider theme={{ type: useGlobalStore.theme }}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/">
+              <Homepage />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </GeistProvider>
+    </>
   );
-}
+});
 
 export default App;
