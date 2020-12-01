@@ -6,11 +6,14 @@ import { GlobalStore, GlobalStoreContext } from './service/store';
 import { ToastContainer } from 'react-toastify';
 import './asset/stylesheet/index.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStoreContext.Provider value={new GlobalStore()}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </GlobalStoreContext.Provider>
     <ToastContainer />
   </React.StrictMode>,

@@ -1,4 +1,4 @@
-import { Select, Text } from '@geist-ui/react';
+import { Select, Spacer, Text } from '@geist-ui/react';
 import { Moon, Sun } from '@geist-ui/react-icons';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
@@ -15,6 +15,7 @@ const themeOption = (type: string) => {
       return (
         <OptionChildren>
           <Sun size={16} />
+          <Spacer x={0.2}></Spacer>
           <Text>明亮</Text>
         </OptionChildren>
       );
@@ -22,6 +23,7 @@ const themeOption = (type: string) => {
       return (
         <OptionChildren>
           <Moon size={16} />
+          <Spacer x={0.2}></Spacer>
           <Text>暗黑</Text>
         </OptionChildren>
       );
@@ -42,6 +44,7 @@ const ToggleTheme = observer(() => {
         className={styles.Select}
         value={useGlobalStore.theme}
         onChange={handleChange}
+        dropdownClassName={styles.Dropdown}
       >
         {/* 发现没有可以返回所有主题列表的接口，暂时全写死 */}
         {['light', 'dark'].map((v, i) => (

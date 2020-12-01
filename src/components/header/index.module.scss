@@ -4,4 +4,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: sticky;
+  top: 0;
+
+  &.pin {
+    box-shadow: rgba($color: #000000, $alpha: 0.1) 0 0 15px;
+  }
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-11-29 23:09:26
  * @LastEditors: Skye Young
- * @LastEditTime: 2020-11-30 19:18:26
+ * @LastEditTime: 2020-12-01 16:47:31
  * @FilePath: \official-site-frontend\src\service\store\index.ts
  */
 import { autorun, makeAutoObservable } from 'mobx';
@@ -25,23 +25,36 @@ class GlobalStore {
     window.localStorage.setItem('theme', this.theme);
 
     const body = document.body;
-    if (this.theme === 'dark') {
-      body.classList.add('theme-dark');
-    } else {
-      body.classList.remove('theme-dark');
-    }
+    if (this.theme === 'dark') body.classList.add('theme-dark');
+    else body.classList.remove('theme-dark');
+  }
+
+  token: string = '';
+
+  setToken(newToken: string) {
+    this.token = newToken;
+  }
+
+  private loadToken() {
+    const sessionStorageToken = window.sessionStorage.getItem('token');
+    this.token = sessionStorageToken ? sessionStorageToken : this.token;
+  }
+
+  private saveToken() {
+    window.sessionStorage.setItem('token', this.token);
   }
 
   constructor() {
     makeAutoObservable(this);
 
     this.loadTheme();
+    this.loadToken();
+
     autorun(this.saveTheme.bind(this));
+    autorun(this.saveToken.bind(this));
   }
 }
 
 const GlobalStoreContext = React.createContext(new GlobalStore());
-
-// const useGlobalStore = () => React.useContext(GlobalStoreContext);
 
 export { GlobalStore, GlobalStoreContext };
