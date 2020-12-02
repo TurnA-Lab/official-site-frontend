@@ -2,7 +2,7 @@ import { Select, Spacer, Text } from '@geist-ui/react';
 import { Moon, Sun } from '@geist-ui/react-icons';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { GlobalStoreContext } from '../../service/store';
+import { useGlobalStore } from '../../service/store';
 import styles from './index.module.scss';
 
 const OptionChildren = ({ children }: { children: React.ReactNode }) => (
@@ -33,16 +33,17 @@ const themeOption = (type: string) => {
 };
 
 const ToggleTheme = observer(() => {
-  const useGlobalStore = React.useContext(GlobalStoreContext);
+  // const useGlobalStore = React.useContext(GlobalStoreContext);
+  const { themeStore } = useGlobalStore();
   const handleChange = (v: string | string[]) =>
-    useGlobalStore.setTheme(v as string);
+    themeStore.setTheme(v as string);
 
   return (
     <>
       <Select
         pure
         className={styles.Select}
-        value={useGlobalStore.theme}
+        value={themeStore.theme}
         onChange={handleChange}
         dropdownClassName={styles.Dropdown}
       >

@@ -5,12 +5,12 @@ import { Logo } from '../logo';
 import { ToggleTheme } from '../toggle-theme';
 import styles from './index.module.scss';
 import { LoginModal } from './LoginModal';
-import { GlobalStoreContext } from '../../service/store';
 import { composeClassNames } from '../../utils/boost';
 import { observer } from 'mobx-react-lite';
+import { useGlobalStore } from '../../service/store';
 
 const Header = observer(() => {
-  const useGlobalStore = React.useContext(GlobalStoreContext);
+  const { tokenStore } = useGlobalStore();
 
   return (
     <nav className={composeClassNames(styles.Header, 'section-container')}>
@@ -20,7 +20,7 @@ const Header = observer(() => {
         </Link>
       </span>
       <span>
-        {useGlobalStore.token ? (
+        {tokenStore.token ? (
           <Link to="/zone">
             <Button auto type="abort">
               Zone

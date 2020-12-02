@@ -1,5 +1,5 @@
 import { Modal, Button, Input, Spacer } from '@geist-ui/react';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import User from '@geist-ui/react-icons/user';
 import Key from '@geist-ui/react-icons/key';
 import { Field, Form } from 'react-final-form';
@@ -13,17 +13,17 @@ import {
 import { toast } from 'react-toastify';
 import { userLogin } from '../../service/api/user';
 import { BasicUserModel } from '../../model/UserModel';
-import { GlobalStoreContext } from '../../service/store';
+import { useGlobalStore } from '../../service/store';
 
 const LoginModal = () => {
   const [visible, setVisible] = useState(false);
-  const GlobalStore = useContext(GlobalStoreContext);
+  const { tokenStore } = useGlobalStore();
 
   const submitAction = (values: any) =>
     userLogin(values as BasicUserModel)
       .then((data) => {
         setVisible(false);
-        GlobalStore.setToken(data.token);
+        tokenStore.setToken(data.token);
       })
       .catch((err) => toast.error(err));
 

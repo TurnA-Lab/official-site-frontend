@@ -4,13 +4,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Homepage } from './page/homepage';
 import { Zone } from './page/zone';
-import { GlobalStoreContext } from './service/store';
+import { useGlobalStore } from './service/store';
 
 const App = observer(() => {
-  const useGlobalStore = React.useContext(GlobalStoreContext);
+  // const useGlobalStore = React.useContext(GlobalStoreContext);
+  const { themeStore } = useGlobalStore();
 
   return (
-    <GeistProvider theme={{ type: useGlobalStore.theme }}>
+    <GeistProvider theme={{ type: themeStore.theme }}>
       <CssBaseline />
       <Switch>
         <Route exact path="/">
