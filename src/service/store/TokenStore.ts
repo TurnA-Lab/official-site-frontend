@@ -1,11 +1,11 @@
-import { makeAutoObservable, autorun } from "mobx";
-
 /*
  * @Date: 2020-12-01 22:22:32
  * @LastEditors: Skye Young
- * @LastEditTime: 2020-12-01 22:22:33
- * @FilePath: \official-site-frontend\src\service\store\token.ts
+ * @LastEditTime: 2020-12-02 13:01:13
+ * @FilePath: \official-site-frontend\src\service\store\TokenStore.ts
  */
+import { makeAutoObservable, autorun } from 'mobx';
+
 export class TokenStore {
   token: string = '';
 

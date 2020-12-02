@@ -9,11 +9,17 @@ import { composeClassNames } from '../../utils/boost';
 import { observer } from 'mobx-react-lite';
 import { useGlobalStore } from '../../service/store';
 
-const Header = observer(() => {
+const Header = observer(({ sticky }: { sticky: boolean }) => {
   const { tokenStore } = useGlobalStore();
 
   return (
-    <nav className={composeClassNames(styles.Header, 'section-container')}>
+    <nav
+      className={composeClassNames(
+        'section-container',
+        styles.Header,
+        sticky ? styles.pin : '',
+      )}
+    >
       <span>
         <Link to="/">
           <Logo />
@@ -23,7 +29,7 @@ const Header = observer(() => {
         {tokenStore.token ? (
           <Link to="/zone">
             <Button auto type="abort">
-              Zone
+              ZONE
             </Button>
           </Link>
         ) : (
