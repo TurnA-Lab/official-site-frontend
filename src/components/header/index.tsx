@@ -10,7 +10,7 @@ import { observer } from 'mobx-react-lite';
 import { useGlobalStore } from '../../service/store';
 
 const Header = observer(({ sticky }: { sticky: boolean }) => {
-  const { tokenStore } = useGlobalStore();
+  const { tokenStore, infoStore } = useGlobalStore();
 
   return (
     <nav
@@ -26,7 +26,7 @@ const Header = observer(({ sticky }: { sticky: boolean }) => {
         </Link>
       </span>
       <span>
-        {tokenStore.token ? (
+        {tokenStore.token && infoStore.info ? (
           <Link to="/zone">
             <Button auto type="abort">
               ZONE

@@ -17,15 +17,17 @@ import { useGlobalStore } from '../../service/store';
 
 const LoginModal = () => {
   const [visible, setVisible] = useState(false);
-  const { tokenStore } = useGlobalStore();
+  const { tokenStore, infoStore } = useGlobalStore();
 
   const submitAction = (values: any) =>
     userLogin(values as BasicUserModel)
       .then((data) => {
         setVisible(false);
         tokenStore.setToken(data.token);
+        infoStore.setInfo(JSON.stringify({ ...data, token: null }));
+        toast.success('登录成功');
       })
-      .catch((err) => toast.error(err));
+      .catch((err) => toast.error(err) && undefined);
 
   return (
     <>
@@ -70,7 +72,7 @@ const LoginModal = () => {
                   )}
                 </Field>
 
-                <Spacer y={0.8}></Spacer>
+                <Spacer y={0.8}/>
 
                 <Field
                   name="password"
@@ -94,7 +96,7 @@ const LoginModal = () => {
                   )}
                 </Field>
 
-                <Spacer y={0.8}></Spacer>
+                <Spacer y={0.8}/>
 
                 <Button
                   htmlType="submit"
